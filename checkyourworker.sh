@@ -11,14 +11,24 @@ else
 fi
 
 # Parse TOPIC_ID
-TOPIC_ID=$(echo "$TOPIC" | awk -F'-' '{print $3}')
+if [[ "$TOPIC" =~ ^[0-9]+$ ]]; then
+    TOPIC_ID="$TOPIC"
+else
+    TOPIC_ID=$(echo "$TOPIC" | awk -F'-' '{print $3}')
+fi
 echo "Parsed TOPIC_ID: $TOPIC_ID"
 
 # Determine the token based on TOPIC_ID
 case "$TOPIC_ID" in
   1) TOKEN="ETH" ;;
+  2) TOKEN="ETH" ;;
   3) TOKEN="BTC" ;;
+  4) TOKEN="BTC" ;;
   5) TOKEN="SOL" ;;
+  6) TOKEN="SOL" ;;
+  7) TOKEN="ETH" ;;
+  8) TOKEN="BNB" ;;
+  9) TOKEN="ARB" ;;
   *) TOKEN="ETH" ;; # Default action set to ETH for invalid TOPIC_ID
 esac
 
